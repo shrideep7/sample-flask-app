@@ -4,8 +4,7 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - aws ecr get-login-password --region ap-south-1 > ecr-login.txt
-      - docker login --username AWS --password-stdin $(cat ecr-login.txt | awk '{print $NF}') 381492132216.dkr.ecr.ap-south-1.amazonaws.com/flask-app-cicd
+      - $(aws ecr get-login-password --region ap-south-1 --no-include-email) 
       - echo Logged in to Amazon ECR successfully
 
   build:
